@@ -131,6 +131,7 @@ extension String {
     }
 }
 
+/*
 //Testing
 //First block of the blockchain is always a genesis block
 //Genesis block is just an instance of class blockchainBlock
@@ -145,5 +146,5 @@ let JSONDATA = try! JSONEncoder().encode(objBlockchain)
 let blockchainJSON = String(data: JSONDATA, encoding: .utf8)
 print(blockchainJSON!)
 
-
+*/
 

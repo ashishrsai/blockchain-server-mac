@@ -11,16 +11,17 @@ import HTTP
 
 class bcController {
     var drop :Droplet
-    var blockchain :blockchainModel
+    var blockchainmodel :blockchainModel
     init(drop :Droplet) {
         self.drop = drop
-        self.blockchain = blockchainModel()
+        self.blockchainmodel = blockchainModel()
         self.routes()
     }
     
     func routes(){
-        self.drop.get("hello"){ request in
-            return "it is working"
+        self.drop.get("BlockChain"){ request in
+            let blockchain = self.blockchainmodel.startBlockchain()
+            return try! JSONEncoder().encode(blockchain)
         }
     }
 }

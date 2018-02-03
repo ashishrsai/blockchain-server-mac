@@ -8,5 +8,13 @@
 import Foundation
 
 class blockchainModel {
-    //Model code here.
+    
+    var blockchain :blockChain!
+    init() {
+        self.blockchain = blockChain(genesis: blockchainBlock(),difficulty: "00")
+    }
+    
+    func startBlockchain() -> blockChain{
+        return self.blockchain
+    }
 }
