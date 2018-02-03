@@ -2,7 +2,9 @@
 
 extension Droplet {
     public func setup() throws {
-        try setupRoutes()
-        // Do any additional droplet setup
+       setUpController()
+    }
+    func setUpController(){
+         _ = bcController(drop :self)
     }
 }
