@@ -23,4 +23,10 @@ class blockchainModel {
         self.blockchain.appendBlockToBlockChain(block: tempBlock)
         return tempBlock
     }
+    
+    //This function is used in order to add the node to the block chain
+    func addNewNode(_ nodes : node){
+        self.blockchain.addNode(newNodes: nodes)
+        
+    }
 }

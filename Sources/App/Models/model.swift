@@ -74,11 +74,15 @@ class blockchainBlock : Codable{
 class blockChain : Codable{
     //blockInBlockChain is an array of object of class blockchainBlock (blockchain will have a number of blocks thus an array)
     var blockInBlockChain :[blockchainBlock] = [blockchainBlock]()
+    var nodes :[node] = [node]()
     
     init(genesis :blockchainBlock) {
         self.appendBlockToBlockChain(block: genesis)
     }
     
+    func addNode(newNodes :node){
+        self.nodes.append(newNodes)
+    }
     func appendBlockToBlockChain(block :blockchainBlock){
         if (self.blockInBlockChain.isEmpty){
             print("The blockchain has no blocks so we will create a gennis block now")
@@ -138,6 +142,24 @@ extension String {
         let data = outputPipe.fileHandleForReading.readDataToEndOfFile()
         let hash = String(data: data, encoding: String.Encoding.utf8)!
         return hash.replacingOccurrences(of: "  -\n", with: "")
+    }
+}
+
+//In order to make the blockchain decentralised a number of nodes will be running the block chain togther so there has be a way of handling it
+//I am using the address of the node as the key identifier of the node
+class node : Codable{
+    var address :String
+    
+    //Vapor code to get the address from the user in a POST request
+    init?(request : Request) {
+        guard let address = request.data["address"]?.string else {
+            return nil
+        }
+        self.address = address
+    }
+    
+    init(address :String){
+        self.address = address
     }
 }
 

@@ -19,6 +19,8 @@ class bcController {
     }
     
     func routes(){
+        
+        
         self.drop.post("miner") { request in
             
             if let transactions = transaction(request: request ){
@@ -30,6 +32,19 @@ class bcController {
         self.drop.get("BlockChain"){ request in
             let blockchain = self.blockchainmodel.startBlockchain()
             return try! JSONEncoder().encode(blockchain)
+        }
+        //Use this POST method in order to add a new node in the blockchain
+        self.drop.post("addNode"){ request in
+            if let nodes = node(request :request){
+                self.blockchainmodel.addNewNode(nodes)
+                
+            }
+            return try JSONEncoder().encode(["Did it work?":"Yes it did the node has been added"])
+        }
+        
+        //Use this GET method to get a list of all the nodes in the blockchain
+        self.drop.get("getnodes"){ request in
+            return try JSONEncoder().encode(self.blockchainmodel.blockchain.nodes)
         }
     }
 }
