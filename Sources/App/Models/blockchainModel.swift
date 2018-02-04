@@ -17,4 +17,8 @@ class blockchainModel {
     func startBlockchain() -> blockChain{
         return self.blockchain
     }
+    //we can use this function to mine a block
+    func mineablock(transactions : [transaction]) -> blockchainBlock{
+        return self.blockchain.addNewBlock(transactionInBlock : transactions)
+    }
 }

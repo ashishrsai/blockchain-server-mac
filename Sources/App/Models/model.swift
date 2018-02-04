@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Vapor
 //: Playground - noun: a place where people can play
 // Building an outline for the actul blockchain server
 
@@ -20,6 +21,17 @@ class transaction : Codable{
     
     //initilaisation of the class
     init(amount :Double, to :String, from :String) {
+        self.amount = amount
+        self.to = to
+        self.from = from
+    }
+    init?(request :Request) {
+        guard let amount = request.data["amount"]?.double,
+            let to = request.data["to"]?.string,
+            let from = request.data["from"]?.string else {
+            return nil
+        }
+        
         self.amount = amount
         self.to = to
         self.from = from

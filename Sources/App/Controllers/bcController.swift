@@ -19,6 +19,14 @@ class bcController {
     }
     
     func routes(){
+        self.drop.post("miner") { request in
+            
+            if let transactions = transaction(request: request ){
+              let tempBlock = self.blockchainmodel.mineablock(transactions: [transactions])
+                return try JSONEncoder().encode(tempBlock)
+            }
+            return "error"
+        }
         self.drop.get("BlockChain"){ request in
             let blockchain = self.blockchainmodel.startBlockchain()
             return try! JSONEncoder().encode(blockchain)
