@@ -11,7 +11,7 @@ class blockchainModel {
     
     var blockchain :blockChain!
     init() {
-        self.blockchain = blockChain(genesis: blockchainBlock(),difficulty: "00")
+        self.blockchain = blockChain(genesis: blockchainBlock())
     }
     
     func startBlockchain() -> blockChain{
@@ -19,6 +19,8 @@ class blockchainModel {
     }
     //we can use this function to mine a block
     func mineablock(transactions : [transaction]) -> blockchainBlock{
-        return self.blockchain.addNewBlock(transactionInBlock : transactions)
+        let tempBlock = self.blockchain.addNewBlock(transactionInBlock : transactions)
+        self.blockchain.appendBlockToBlockChain(block: tempBlock)
+        return tempBlock
     }
 }

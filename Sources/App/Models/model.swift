@@ -74,11 +74,9 @@ class blockchainBlock : Codable{
 class blockChain : Codable{
     //blockInBlockChain is an array of object of class blockchainBlock (blockchain will have a number of blocks thus an array)
     var blockInBlockChain :[blockchainBlock] = [blockchainBlock]()
-    var difficultylevel :String!
     
-    init(genesis :blockchainBlock,difficulty :String) {
+    init(genesis :blockchainBlock) {
         self.appendBlockToBlockChain(block: genesis)
-        difficultylevel = difficulty
     }
     
     func appendBlockToBlockChain(block :blockchainBlock){
